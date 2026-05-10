@@ -219,3 +219,11 @@ app.all('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`OpenAI to NVIDIA NIM Proxy running on port ${PORT}`);
 });
+const server = app.listen(PORT, () => {
+  console.log(`OpenAI to NVIDIA NIM Proxy running on port ${PORT}`);
+});
+
+// Keep connections alive longer for large uploads
+server.keepAliveTimeout = 120000; // 120 seconds
+server.headersTimeout = 125000;   // 125 seconds
+
